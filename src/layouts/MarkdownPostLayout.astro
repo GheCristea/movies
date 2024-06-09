@@ -1,0 +1,22 @@
+---
+type Props = {
+    frontmatter: {
+        title: string;
+        author: string;
+        pubDate: string;
+        description: string;
+        image: {
+            url: string;
+            alt: string
+        };
+        tags: string[];
+    };
+}
+const { frontmatter } = Astro.props;
+---
+<h1>{frontmatter.title}</h1>
+<p>Written by {frontmatter.author} at {new Date(frontmatter.pubDate).toLocaleDateString()}</p>
+<p>{frontmatter.description}</p>
+<img class="bg-primary" src={frontmatter.image.url} alt={frontmatter.image.alt} />
+<p>Tags: {frontmatter.tags.join(', ')}</p>
+<slot />

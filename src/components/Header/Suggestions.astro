@@ -1,0 +1,21 @@
+---
+import type { SearchSuggestion } from '../../types/searchSuggestion';
+
+interface Props {
+    suggestions: SearchSuggestion[]
+}
+
+const { suggestions } = Astro.props;
+
+const getUrl = (id: number = 1) =>`https://api.tvmaze.com/shows/${id}`;
+
+---
+<div>
+    {suggestions.map(suggestion => (
+        <a href={getUrl(suggestion.id)}>
+            <img src={suggestion.image } />
+            <h3>{suggestion.name}</h3>
+            <p>{suggestion.genres?.[0]}</p>
+        </a>
+    ))}
+</div>
